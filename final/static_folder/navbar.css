@@ -1,0 +1,31 @@
+.main {
+  font-size: 50px;
+  margin-left: 330px;
+  margin-top: 20px;
+}
+#popdown.btn {
+  display: inline-block;
+  background-color: #605959;
+  padding-left: 10px;
+  padding-right: 10px;
+}
+#disappear_ul a {
+  display: inline-block;
+  float: left;
+  list-style-type: none;
+  font-size: 20px;
+  background-color: grey;
+  padding: 5px;
+  padding-left: 107px;
+  padding-right: 107px;
+  margin: 0px;
+}
+#disappear_ul a:hover {
+  display: inline-block;
+  background-color: lightblue;
+  color: black;
+}
+#popdown:hover {
+  background-color: lightblue;
+  color: black;
+}
