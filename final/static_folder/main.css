@@ -1,0 +1,13 @@
+h1 {
+  text-align: center;
+}
+html {
+  background-color: #fba67d;
+  color: #444444;
+  font-family: 'Quicksand', sans-serif;
+}
+.search {
+  margin: 0 auto;
+  text-align: center;
+  padding: 100px;
+}
