@@ -8,8 +8,13 @@
 <body>
   <h1>Our Future Title</h1>
 
-  <div>
-
+  <div id="searchResults">
+    <div>
+      {% for i in range(num) %}
+        <h3>{{title[i]}}</h3>
+        <a href="{{link[i]}}">Link to Recipe</a>
+        {% endfor %}
+    </div>
   </div>
   <div class="store_nav">
         <div id="disappear_ul">
