@@ -14,7 +14,7 @@
   float: left;
   list-style-type: none;
   font-size: 20px;
-  background-color: grey;
+  background-color: #444444;
   padding: 5px;
   padding-left: 107px;
   padding-right: 107px;
@@ -22,10 +22,14 @@
 }
 #disappear_ul a:hover {
   display: inline-block;
-  background-color: lightblue;
+  background-color: gray;
   color: black;
 }
 #popdown:hover {
-  background-color: lightblue;
+  background-color: gray;
   color: black;
+}
+a {
+  text-decoration: none;
+  color: #fba67d;
 }
