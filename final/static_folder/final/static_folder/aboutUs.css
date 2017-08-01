@@ -1,0 +1,24 @@
+h1 {
+  text-align: center;
+  color: #444444;
+  font-size: 45px;
+}
+#info {
+  display: inline-block;
+  border: solid;
+  width: 31%;
+  padding: 10px;
+  padding-top: 0px;
+  border-style: ridge;
+}
+#info h3 {
+  text-align: center;
+  font-size: 30px;
+}
+p {
+  font-size: 20px;
+}
+html {
+  background-color: #fba67d;
+  color: #444444;
+}
