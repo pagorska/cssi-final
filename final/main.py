@@ -33,12 +33,11 @@ class AboutHandler(webapp2.RequestHandler):
         my_template = jinja_environment.get_template('templates/aboutUs.html')
         self.response.write(my_template.render())
 
-
 #for restaurants.html
 class RestaurantHandler(webapp2.RequestHandler):
     def get(self):
         my_template = jinja_environment.get_template('templates/restaurants.html')
-        self.response.write("restaurants work")
+        self.response.write(my_template.render())
 
 #for searchResults.html
 class SearchHandler(webapp2.RequestHandler):
