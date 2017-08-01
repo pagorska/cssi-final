@@ -15,6 +15,7 @@
 # limitations under the License.
 #
 from google.appengine.api import users
+from models import Fridge
 import webapp2
 import jinja2
 import os
@@ -22,16 +23,18 @@ import urllib
 import urllib2
 import json
 
+
 jinja_environment = jinja2.Environment(
     loader=jinja2.FileSystemLoader(os.path.dirname(__file__)))
 
 # for main.html
 class MainHandler(webapp2.RequestHandler):
     def get(self):
-        listFood = self.request.get('search')
-        my_template = jinja_environment.get_template('templates/main.html')
-        self.response.write(my_template.render())
-
+        food = self.request.get('ingredient')
+        food_query = food.query(food == ingredient)
+        food_list = food_query.get()
+        query.append(food)
+        food_list.put()
 #for aboutUs.html
 class AboutHandler(webapp2.RequestHandler):
     def get(self):
