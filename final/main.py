@@ -30,6 +30,7 @@ jinja_environment = jinja2.Environment(
 # for main.html
 class MainHandler(webapp2.RequestHandler):
     def get(self):
+<<<<<<< HEAD
         food = self.request.get('ingredient')
         if food != "":
             user = users.get_current_user()
@@ -40,6 +41,14 @@ class MainHandler(webapp2.RequestHandler):
             user_fridge.foodList.append(food)
             user_fridge.put()
         my_template = jinja_environment.get_template('templates/main.html')
+=======
+        my_template = jinja_environment.get_template('templates/main.html')
+        # food = self.request.get('ingredient')
+        # food_query = food.query(food == ingredient)
+        # food_list = food_query.get()
+        # query.append(food)
+        # food_list.put()
+>>>>>>> 7ba618a9714bea941c5bed2e43f677cbf0cb1951
         self.response.write(my_template.render())
 
 #for aboutUs.html
@@ -91,16 +100,16 @@ class LoginHandler(webapp2.RequestHandler):
                 users.create_login_url('/'))
         self.response.write('<html><body>%s</body></html>' % greeting)
 
+class FridgeHandler(webapp2.RequestHandler):
+    def get(self):
+        self.response.write('fridge works!')
+
 app = webapp2.WSGIApplication([
     ('/', MainHandler),
     ('/search', SearchHandler),
     ('/about-us', AboutHandler),
     ('/restaurants', RestaurantHandler),
-    ('/login', LoginHandler)
+    ('/login', LoginHandler),
+    ('/fridge', FridgeHandler)
 
 ], debug=True)
-
-# query.fetch(in)
-#
-# ingredient = Ingredient(name="milk")
-# ingredient = name.put()
