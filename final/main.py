@@ -47,6 +47,7 @@ class RestaurantHandler(webapp2.RequestHandler):
 class SearchHandler(webapp2.RequestHandler):
     def get(self):
         my_template = jinja_environment.get_template('templates/searchResults.html')
+        self.response.write(my_template.render())
         self.response.write("search works")
 app = webapp2.WSGIApplication([
     ('/', MainHandler),
