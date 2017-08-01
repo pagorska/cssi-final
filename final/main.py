@@ -63,13 +63,13 @@ class LoginHandler(webapp2.RequestHandler):
         else:
             greeting = ('<a href="%s">Sign in or register</a>.' %
                 users.create_login_url('/'))
-
         self.response.write('<html><body>%s</body></html>' % greeting)
 
 app = webapp2.WSGIApplication([
     ('/', MainHandler),
     ('/search', SearchHandler),
     ('/about-us', AboutHandler),
-    ('/restaurants', RestaurantHandler)
+    ('/restaurants', RestaurantHandler),
+    ('/login', LoginHandler)
 
 ], debug=True)
