@@ -61,3 +61,8 @@ app = webapp2.WSGIApplication([
     ('/restaurants', RestaurantHandler)
 
 ], debug=True)
+
+# query.fetch(in)
+#
+# ingredient = Ingredient(name="milk")
+# ingredient = name.put()

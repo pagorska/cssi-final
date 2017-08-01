@@ -1,8 +1,10 @@
 from google.appengine.ext import ndb
 from main import SearchHandler
-class Fridge(ndb.Model):
-    foodList = ndb.KeyProperty(Food, repeated = True)
 
-class Food(ndb.Model):
+class Ingredient(ndb.Model):
     name = ndb.StringProperty()
+    Ingredient = ndb.StringProperty()
     # expiration
+
+class Fridge(ndb.Model):
+    foodList = ndb.KeyProperty(Ingredient, repeated = True)
