@@ -5,16 +5,16 @@
 var map;
 
 function initMap() {
-  var pyrmont = {lat: -33.866, lng: 151.196};
+  var chicago = {lat: 41.881832, lng: -87.623177};
 
   map = new google.maps.Map(document.getElementById('map'), {
-    center: pyrmont,
+    center: chicago,
     zoom: 17
   });
 
   var service = new google.maps.places.PlacesService(map);
   service.nearbySearch({
-    location: pyrmont,
+    location: chicago,
     radius: 500,
     type: ['restaurant']
   }, processResults);
