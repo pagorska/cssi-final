@@ -3,6 +3,7 @@
 
   <link href="https://fonts.googleapis.com/css?family=Quicksand" rel="stylesheet">
   <link rel="stylesheet" href="resources/navbar.css"></link>
+  <link rel="stylesheet" href="resources/search.css"></link>
 
 </head>
 <body>
@@ -11,8 +12,10 @@
   <div id="searchResults">
     <div>
       {% for i in range(num) %}
+      <div class="iSearches">
         <h3>{{title[i]}}</h3>
         <a href="{{link[i]}}">Link to Recipe</a>
+      </div>
         {% endfor %}
     </div>
   </div>

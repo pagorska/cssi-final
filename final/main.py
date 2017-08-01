@@ -48,7 +48,6 @@ class RestaurantHandler(webapp2.RequestHandler):
 #for searchResults.html
 class SearchHandler(webapp2.RequestHandler):
     def get(self):
-        self.response.write("search works")
         ingredient = self.request.get("search")
         base_url = 'http://www.recipepuppy.com/api/?'
         url_params = { 'i': ingredient}
@@ -56,7 +55,6 @@ class SearchHandler(webapp2.RequestHandler):
         recipe_response = urllib2.urlopen(request_url)
         recipe_json = recipe_response.read()
         recipe_data = json.loads(recipe_json)
-        recipe_title = recipe_data['results'][0]['title']
         title_list = []
         ingr_list = []
         link_list = []
