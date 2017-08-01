@@ -21,10 +21,15 @@
 
     <div id="input">
       <form action="">
-        <input name="search" type="text">
+        <input name="ingredient" type="text">
         <input type="submit">
       </form>
     </div>
+    {%for item in fridge_items%}
+      <ul>
+        <li>{{item}}</li>
+      </ul>
+    {%endfor%}
 
     <div style="clear:both;"></div>
     <div class="store_nav">
