@@ -81,12 +81,17 @@ class LoginHandler(webapp2.RequestHandler):
                 users.create_login_url('/'))
         self.response.write('<html><body>%s</body></html>' % greeting)
 
+class FridgeHandler(webapp2.RequestHandler):
+    def get(self):
+        self.response.write('fridge works!')
+
 app = webapp2.WSGIApplication([
     ('/', MainHandler),
     ('/search', SearchHandler),
     ('/about-us', AboutHandler),
     ('/restaurants', RestaurantHandler),
-    ('/login', LoginHandler)
+    ('/login', LoginHandler),
+    ('/fridge', FridgeHandler)
 
 ], debug=True)
 
