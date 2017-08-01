@@ -1,0 +1,17 @@
+html {
+  background-color: #fba67d;
+  color: #444444;
+  font-family: 'Quicksand', sans-serif;
+}
+
+.iSearches {
+  border: solid;
+  border-color: #444444;
+  display: inline-block;
+  width: 45%;
+  text-align:center;
+  margin-left: 10px;
+}
+h1 {
+  text-align: center;
+}
