@@ -17,6 +17,9 @@
 import webapp2
 import jinja2
 import os
+import urllib
+import urllib2
+import json
 
 jinja_environment = jinja2.Environment(
     loader=jinja2.FileSystemLoader(os.path.dirname(__file__)))
@@ -32,6 +35,7 @@ class AboutHandler(webapp2.RequestHandler):
     def get(self):
         my_template = jinja_environment.get_template('templates/aboutUs.html')
         self.response.write(my_template.render())
+
 
 #for restaurants.html
 class RestaurantHandler(webapp2.RequestHandler):
