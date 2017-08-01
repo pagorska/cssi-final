@@ -49,6 +49,9 @@ class SearchHandler(webapp2.RequestHandler):
         my_template = jinja_environment.get_template('templates/searchResults.html')
         self.response.write(my_template.render())
         self.response.write("search works")
+        ingredient = self.request.get("name")
+        self.response.write(ingredient)
+
 app = webapp2.WSGIApplication([
     ('/', MainHandler),
     ('/search', SearchHandler),
