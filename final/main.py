@@ -30,11 +30,14 @@ jinja_environment = jinja2.Environment(
 # for main.html
 class MainHandler(webapp2.RequestHandler):
     def get(self):
-        food = self.request.get('ingredient')
-        food_query = food.query(food == ingredient)
-        food_list = food_query.get()
-        query.append(food)
-        food_list.put()
+        my_template = jinja_environment.get_template('templates/main.html')
+        # food = self.request.get('ingredient')
+        # food_query = food.query(food == ingredient)
+        # food_list = food_query.get()
+        # query.append(food)
+        # food_list.put()
+        self.response.write(my_template.render())
+
 #for aboutUs.html
 class AboutHandler(webapp2.RequestHandler):
     def get(self):
@@ -97,8 +100,3 @@ app = webapp2.WSGIApplication([
     ('/fridge', FridgeHandler)
 
 ], debug=True)
-
-# query.fetch(in)
-#
-# ingredient = Ingredient(name="milk")
-# ingredient = name.put()
