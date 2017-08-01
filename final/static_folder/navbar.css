@@ -3,6 +3,9 @@
   margin-left: 330px;
   margin-top: 20px;
 }
+.hidden {
+  display: none;
+}
 #popdown.btn {
   display: inline-block;
   background-color: #605959;
@@ -34,8 +37,9 @@
 #fridge {
   float: left;
 }
-#add a {
+#add {
   float: right;
+  color: #fba67d;
   list-style-type: none;
   font-size: 15px;
   border-radius: 25px;
@@ -50,7 +54,11 @@
   background-color: gray;
   color: black;
 }
-#popdown:hover {
+#add:hover {
+  background-color: gray;
+  color: black;
+}
+#login:hover {
   background-color: gray;
   color: black;
 }

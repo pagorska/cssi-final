@@ -1,13 +1,14 @@
 function disappear() {
-  $("#disappear_ul").toggleClass("hidden");
+  $("#input").toggleClass("hidden");
 }
 
 $(document).ready(function() {
-  $("#popdown").click(disappear);
+  $("#popdown").click();
   $("#about").click();
   $("#home").click();
   $("#recipes").click();
   $("#map").click();
   $("#fridge").click();
+  $("#add").click(disappear);
   }
 )

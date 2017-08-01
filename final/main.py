@@ -31,10 +31,26 @@ jinja_environment = jinja2.Environment(
 class MainHandler(webapp2.RequestHandler):
     def get(self):
         food = self.request.get('ingredient')
-        food_query = food.query(food == ingredient)
-        food_list = food_query.get()
-        query.append(food)
-        food_list.put()
+        if food != "":
+            user = users.get_current_user()
+            food_query = Fridge.query(Fridge.user_id == user.user_id())
+            user_fridge = food_query.get()
+            if user_fridge == None:
+                user_fridge = Fridge(user_id = user.user_id())
+            user_fridge.foodList.append(food)
+            user_fridge.put()
+        my_template = jinja_environment.get_template('templates/main.html')
+<<<<<<< HEAD
+        # food = self.request.get('ingredient')
+        # food_query = food.query(food == ingredient)
+        # food_list = food_query.get()
+        # query.append(food)
+        # food_list.put()
+
+=======
+>>>>>>> bc0e5dc141d4e369a2d4e2b18f782f8efd416629
+        self.response.write(my_template.render())
+
 #for aboutUs.html
 class AboutHandler(webapp2.RequestHandler):
     def get(self):
@@ -97,8 +113,3 @@ app = webapp2.WSGIApplication([
     ('/fridge', FridgeHandler)
 
 ], debug=True)
-
-# query.fetch(in)
-#
-# ingredient = Ingredient(name="milk")
-# ingredient = name.put()
