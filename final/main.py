@@ -17,7 +17,7 @@
 import webapp2
 import jinja2
 import os
-
+from google.appengine.ext import ndb
 jinja_environment = jinja2.Environment(
     loader=jinja2.FileSystemLoader(os.path.dirname(__file__)))
 
@@ -45,6 +45,9 @@ class SearchHandler(webapp2.RequestHandler):
     def get(self):
         my_template = jinja_environment.get_template('templates/searchResults.html')
         self.response.write("search works")
+        ingredient = self.request.get("name")
+        self.response.write(ingredient)
+
 app = webapp2.WSGIApplication([
     ('/', MainHandler),
     ('/search', SearchHandler),
