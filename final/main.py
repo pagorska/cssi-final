@@ -48,6 +48,7 @@ class RestaurantHandler(webapp2.RequestHandler):
 #for searchResults.html
 class SearchHandler(webapp2.RequestHandler):
     def get(self):
+        my_template = jinja_environment.get_template('templates/searchResults.html')
         ingredient = self.request.get("search")
         base_url = 'http://www.recipepuppy.com/api/?'
         url_params = {'i' : ingredient}
@@ -63,7 +64,6 @@ class SearchHandler(webapp2.RequestHandler):
             ingr_list.append(i['ingredients'])
             link_list.append(i['href'])
         lenNum = len(title_list)
-        my_template = jinja_environment.get_template('templates/searchResults.html')
         render_data = { 'title': title_list,
             'ingredients' : ingr_list,
             'link' : link_list,
