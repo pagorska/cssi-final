@@ -9,6 +9,5 @@ $(document).ready(function() {
   $("#recipes").click();
   $("#map").click();
   $("#fridge").click();
-  hidetext();
   }
 )

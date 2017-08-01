@@ -1,56 +1,19 @@
+<!DOCTYPE html>
 <html>
-<<<<<<< HEAD
   <head>
-    <title>Place searches</title>
     <meta name="viewport" content="initial-scale=1.0, user-scalable=no">
-    <meta charset="utf-8">
-    <style>
-      /* Always set the map height explicitly to define the size of the div
-       * element that contains the map. */
-      #map {
-        height: 100%;
-      }
-      /* Optional: Makes the sample page fill the window. */
-      html, body {
-        height: 100%;
-        margin: 0;
-        padding: 0;
-      }
-    </style>
     <script src="resources/restaurants.js"></script>
+    <link rel="stylesheet" href="resources/restaurants.css">
+    <meta charset="utf-8">
+    <title>Place search pagination</title>
   </head>
   <body>
     <div id="map"></div>
+    <div id="right-panel">
+      <h2>Results</h2>
+      <ul id="places"></ul>
+      <button id="more">More results</button>
+    </div>
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAY0XzserzTUvRDFtJDWU_ex-a6IJ7dlEw&libraries=places&callback=initMap" async defer></script>
-    <!DOCTYPE html>
   </body>
-=======
-<head>
-
-  <link href="https://fonts.googleapis.com/css?family=Quicksand" rel="stylesheet">
-</head>
-<body>
-  <div class="store_nav">
-        <div id="disappear_ul">
-          <div id="about">
-            <a href="/about-us">About us</a>
-          </div>
-          <div id="home">
-            <a href="/">Home</a>
-          </div>
-          <div id="recipes">
-          <a href="/search">Recipes</a>
-          </div>
-          <div id="map">
-            <a href="/restaurants">Map</a>
-          </div>
-          <div id="fridge">
-            <a href="/fridge">My Refrigerator</a>
-          </div>
-        </div>
-      </div>
-      <div style="clear:both;"></div>
-
-</body>
->>>>>>> 832a588d565eb00e2d27ce0af0ca91961c4eadf5
 </html>
