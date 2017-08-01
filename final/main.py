@@ -36,6 +36,7 @@ class MainHandler(webapp2.RequestHandler):
         # food_list = food_query.get()
         # query.append(food)
         # food_list.put()
+
         self.response.write(my_template.render())
 
 #for aboutUs.html
