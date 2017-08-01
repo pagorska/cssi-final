@@ -30,7 +30,6 @@ jinja_environment = jinja2.Environment(
 # for main.html
 class MainHandler(webapp2.RequestHandler):
     def get(self):
-<<<<<<< HEAD
         food = self.request.get('ingredient')
         if food != "":
             user = users.get_current_user()
@@ -41,14 +40,6 @@ class MainHandler(webapp2.RequestHandler):
             user_fridge.foodList.append(food)
             user_fridge.put()
         my_template = jinja_environment.get_template('templates/main.html')
-=======
-        my_template = jinja_environment.get_template('templates/main.html')
-        # food = self.request.get('ingredient')
-        # food_query = food.query(food == ingredient)
-        # food_list = food_query.get()
-        # query.append(food)
-        # food_list.put()
->>>>>>> 7ba618a9714bea941c5bed2e43f677cbf0cb1951
         self.response.write(my_template.render())
 
 #for aboutUs.html
