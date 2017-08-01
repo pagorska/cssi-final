@@ -50,7 +50,7 @@ class SearchHandler(webapp2.RequestHandler):
     def get(self):
         ingredient = self.request.get("search")
         base_url = 'http://www.recipepuppy.com/api/?'
-        url_params = { 'i': ingredient}
+        url_params = {'i' : ingredient}
         request_url = base_url + urllib.urlencode(url_params)
         recipe_response = urllib2.urlopen(request_url)
         recipe_json = recipe_response.read()
@@ -63,10 +63,6 @@ class SearchHandler(webapp2.RequestHandler):
             ingr_list.append(i['ingredients'])
             link_list.append(i['href'])
         lenNum = len(title_list)
-        print 'milk'
-        #self.response.write(title_list)
-        #self.response.write(ingr_list)
-        #self.response.write(link_list)
         my_template = jinja_environment.get_template('templates/searchResults.html')
         render_data = { 'title': title_list,
             'ingredients' : ingr_list,
@@ -74,7 +70,6 @@ class SearchHandler(webapp2.RequestHandler):
             'num' : lenNum
         }
         self.response.write(my_template.render(render_data))
-        self.response.write(ingredient)
 class LoginHandler(webapp2.RequestHandler):
     def get(self):
         user = users.get_current_user()
