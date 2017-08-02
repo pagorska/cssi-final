@@ -8,9 +8,10 @@
   font-size: 20px;
   background-color: #444444;
   padding: 5px;
-  padding-left: 143px;
-  padding-right: 143px;
+  padding-left: 146px;
+  padding-right: 146px;
   margin: 0px;
+  border-bottom: 6px solid #fba67d;
 }
 #login a {
   float: right;
@@ -22,6 +23,7 @@
   padding-left: 80px;
   padding-right: 80px;
   margin-right: 20px;
+  margin-top: 20px;
 }
 #fridge {
   float: left;
