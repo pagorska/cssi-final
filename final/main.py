@@ -30,23 +30,21 @@ jinja_environment = jinja2.Environment(
 # for main.html
 class MainHandler(webapp2.RequestHandler):
     def get(self):
-        food = self.request.get('ingredient')
-        if food != "":
-            user = users.get_current_user()
-            food_query = Fridge.query(Fridge.user_id == user.user_id())
-            user_fridge = food_query.get()
-            if user_fridge == None:
-                user_fridge = Fridge(user_id = user.user_id())
-            user_fridge.foodList.append(food)
+        food_list = self.request.get('ingredient').split(', ')
+        user = users.get_current_user()
+        food_query = Fridge.query(Fridge.user_id == user.user_id())
+        user_fridge = food_query.get()
+        if user_fridge == None:
+            user_fridge = Fridge(user_id = user.user_id())
+        if len(food_list) != 0:
+            for item in food_list:
+                user_fridge.foodList.append(item)
             user_fridge.put()
-        my_template = jinja_environment.get_template('templates/main.html')
-        # food = self.request.get('ingredient')
-        # food_query = food.query(food == ingredient)
-        # food_list = food_query.get()
-        # query.append(food)
-        # food_list.put()
+        render_dict = {}
 
-        self.response.write(my_template.render())
+        render_dict['fridge_items'] = user_fridge.foodList
+        my_template = jinja_environment.get_template('templates/main.html')
+        self.response.write(my_template.render(render_dict))
 
 #for aboutUs.html
 class AboutHandler(webapp2.RequestHandler):
