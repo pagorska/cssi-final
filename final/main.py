@@ -38,7 +38,8 @@ class MainHandler(webapp2.RequestHandler):
             user_fridge = Fridge(user_id = user.user_id())
         if len(food_list) != 0:
             for item in food_list:
-                user_fridge.foodList.append(item)
+                if item != '':
+                    user_fridge.foodList.append(item)
             user_fridge.put()
         render_dict = {}
 
