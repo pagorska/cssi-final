@@ -104,6 +104,7 @@ class LoginHandler(webapp2.RequestHandler):
             greeting = ('Welcome, %s! (<a href="%s">sign out</a>)' %
                 (user.nickname(), users.create_logout_url('/')))
         else:
+            alert("You are not signed in!!!")
             greeting = ('<a href="%s">Sign in or register</a>.' %
                 users.create_login_url('/'))
         self.response.write('<html><body>%s</body></html>' % greeting)
