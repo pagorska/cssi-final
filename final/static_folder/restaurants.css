@@ -12,15 +12,12 @@ html, body {
   line-height: 30px;
   padding-left: 10px;
 }
-
 #right-panel select, #right-panel input {
   font-size: 15px;
 }
-
 #right-panel select {
   width: 100%;
 }
-
 #right-panel i {
   font-size: 12px;
 }
