@@ -35,7 +35,7 @@ class MainHandler(webapp2.RequestHandler):
             emptyList = ['Please sign in to save your food items to your fridge']
             render_dict = {
                 'fridge_items' : emptyList,
-                'logon' : 'Log In'
+                'logon' : 'Login'
             }
         else:
             food_query = Fridge.query(Fridge.user_id == user.user_id())
@@ -49,7 +49,7 @@ class MainHandler(webapp2.RequestHandler):
                 user_fridge.put()
             render_dict = {
                 'fridge_items' : user_fridge.foodList,
-                'logon' : 'Log Out'
+                'logon' : 'Logout'
             }
         my_template = jinja_environment.get_template('templates/main.html')
         self.response.write(my_template.render(render_dict))
