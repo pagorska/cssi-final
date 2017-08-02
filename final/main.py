@@ -42,7 +42,6 @@ class MainHandler(webapp2.RequestHandler):
                     user_fridge.foodList.append(item)
             user_fridge.put()
         render_dict = {}
-
         render_dict['fridge_items'] = user_fridge.foodList
         my_template = jinja_environment.get_template('templates/main.html')
         self.response.write(my_template.render(render_dict))
@@ -64,9 +63,12 @@ class RestaurantHandler(webapp2.RequestHandler):
 class SearchHandler(webapp2.RequestHandler):
     def get(self):
         my_template = jinja_environment.get_template('templates/searchResults.html')
-        ingredient = self.request.get("search")
+        user = users.get_current_user()
+        food_query = Fridge.query(Fridge.user_id == user.user_id())
+        user_fridge = food_query.get()
+        ingredients = ",".join(user_fridge.foodList)
         base_url = 'http://www.recipepuppy.com/api/?'
-        url_params = {'i' : ingredient}
+        url_params = {'i' : ingredients}
         request_url = base_url + urllib.urlencode(url_params)
         recipe_response = urllib2.urlopen(request_url)
         recipe_json = recipe_response.read()
