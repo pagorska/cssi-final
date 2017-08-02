@@ -23,7 +23,6 @@ import urllib
 import urllib2
 import json
 
-
 jinja_environment = jinja2.Environment(
     loader=jinja2.FileSystemLoader(os.path.dirname(__file__)))
 
