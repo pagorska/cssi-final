@@ -31,17 +31,22 @@ class MainHandler(webapp2.RequestHandler):
     def get(self):
         food_list = self.request.get('ingredient').split(', ')
         user = users.get_current_user()
-        food_query = Fridge.query(Fridge.user_id == user.user_id())
-        user_fridge = food_query.get()
-        if user_fridge == None:
-            user_fridge = Fridge(user_id = user.user_id())
-        if len(food_list) != 0:
-            for item in food_list:
-                if item != '':
-                    user_fridge.foodList.append(item)
-            user_fridge.put()
-        render_dict = {}
-        render_dict['fridge_items'] = user_fridge.foodList
+        if user is None:
+            emptyList = ['Please sign in to save your food items to your fridge']
+            render_dict = {}
+            render_dict['fridge_items'] = emptyList
+        else:
+            food_query = Fridge.query(Fridge.user_id == user.user_id())
+            user_fridge = food_query.get()
+            if user_fridge == None:
+                user_fridge = Fridge(user_id = user.user_id())
+            if len(food_list) != 0:
+                for item in food_list:
+                    if item != '':
+                        user_fridge.foodList.append(item)
+                user_fridge.put()
+            render_dict = {}
+            render_dict['fridge_items'] = user_fridge.foodList
         my_template = jinja_environment.get_template('templates/main.html')
         self.response.write(my_template.render(render_dict))
 
@@ -61,7 +66,6 @@ class RestaurantHandler(webapp2.RequestHandler):
 #for searchResults.html
 class SearchHandler(webapp2.RequestHandler):
     def get(self):
-        my_template = jinja_environment.get_template('templates/searchResults.html')
         user = users.get_current_user()
         food_query = Fridge.query(Fridge.user_id == user.user_id())
         user_fridge = food_query.get()
@@ -69,23 +73,30 @@ class SearchHandler(webapp2.RequestHandler):
         base_url = 'http://www.recipepuppy.com/api/?'
         url_params = {'i' : ingredients}
         request_url = base_url + urllib.urlencode(url_params)
-        recipe_response = urllib2.urlopen(request_url)
-        recipe_json = recipe_response.read()
-        recipe_data = json.loads(recipe_json)
-        title_list = []
-        ingr_list = []
-        link_list = []
-        for i in recipe_data['results']:
-            title_list.append(i['title'])
-            ingr_list.append(i['ingredients'])
-            link_list.append(i['href'])
-        lenNum = len(title_list)
-        render_data = { 'title': title_list,
-            'ingredients' : ingr_list,
-            'link' : link_list,
-            'num' : lenNum
-        }
-        self.response.write(my_template.render(render_data))
+        try:
+            my_template = jinja_environment.get_template('templates/searchResults.html')
+            recipe_response = urllib2.urlopen(request_url)
+            recipe_json = recipe_response.read()
+            recipe_data = json.loads(recipe_json)
+            title_list = []
+            ingr_list = []
+            link_list = []
+            for i in recipe_data['results']:
+                title_list.append(i['title'])
+                ingr_list.append(i['ingredients'])
+                link_list.append(i['href'])
+            lenNum = len(title_list)
+            render_data = { 'title': title_list,
+                'ingredients' : ingr_list,
+                'link' : link_list,
+                'num' : lenNum
+            }
+            self.response.write(my_template.render(render_data))
+        except urllib2.HTTPError, err:
+            my_template = jinja_environment.get_template('templates/searchFailed.html')
+            self.response.write(my_template.render())
+
+
 class LoginHandler(webapp2.RequestHandler):
     def get(self):
         user = users.get_current_user()
@@ -97,7 +108,10 @@ class LoginHandler(webapp2.RequestHandler):
             greeting = ('<a href="%s">Sign in or register</a>.' %
                 users.create_login_url('/'))
         self.response.write('<html><body>%s</body></html>' % greeting)
+<<<<<<< HEAD
 
+=======
+>>>>>>> 395c4449a5b580dbf5fc34c20757a45bcf940d92
 app = webapp2.WSGIApplication([
     ('/', MainHandler),
     ('/search', SearchHandler),
