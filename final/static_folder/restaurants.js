@@ -1,25 +1,37 @@
-// This example requires the Places library. Include the libraries=places
-// parameter when you first load the API. For example:
-// <script src="https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY&libraries=places">
-
-var map;
-
+var map, infoWindow;
 function initMap() {
-  var chicago = {latlon}
-
   map = new google.maps.Map(document.getElementById('map'), {
-    center: chicago,
-    zoom: 17
+    center: {lat: -34.397, lng: 150.644},
+    zoom: 6
   });
+  infoWindow = new google.maps.InfoWindow;
 
-  var service = new google.maps.places.PlacesService(map);
-  service.nearbySearch({
-    location: chicago,
-    radius: 500,
-    type: ['restaurant']
-  }, processResults);
+  // Try HTML5 geolocation.
+  if (navigator.geolocation) {
+    navigator.geolocation.getCurrentPosition(function(position) {
+      var pos = {
+        lat: position.coords.latitude,
+        lng: position.coords.longitude
+      };
+
+      infoWindow.setPosition(pos);
+      infoWindow.setContent('Location found.');
+      infoWindow.open(map);
+      map.setCenter(pos);
+      var service = new google.maps.places.PlacesService(map);
+      service.nearbySearch({
+        location: map.getCenter(),
+        radius: 500,
+        type: ['restaurant']
+      }, processResults);
+    }, function() {
+      handleLocationError(true, infoWindow, map.getCenter());
+    });
+  } else {
+    // Browser doesn't support Geolocation
+    handleLocationError(false, infoWindow, map.getCenter());
+  }
 }
-
 function processResults(results, status, pagination) {
   if (status !== google.maps.places.PlacesServiceStatus.OK) {
     return;
@@ -38,7 +50,6 @@ function processResults(results, status, pagination) {
     }
   }
 }
-
 function createMarkers(places) {
   var bounds = new google.maps.LatLngBounds();
   var placesList = document.getElementById('places');
@@ -64,4 +75,11 @@ function createMarkers(places) {
     bounds.extend(place.geometry.location);
   }
   map.fitBounds(bounds);
+}
+
+function handleLocationError(browserHasGeolocation, infoWindow, pos) {
+  infoWindow.setPosition(pos);
+  infoWindow.setContent(browserHasGeolocation ?
+                        'Error: The Geolocation service failed.' :
+                        'Error: Your browser doesn\'t support geolocation.');
 }
