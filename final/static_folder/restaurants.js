@@ -5,7 +5,7 @@
 var map;
 
 function initMap() {
-  var chicago = {lat: 41.881832, lng: -87.623177};
+  var chicago = {latlon}
 
   map = new google.maps.Map(document.getElementById('map'), {
     center: chicago,
