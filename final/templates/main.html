@@ -15,23 +15,6 @@
       <a href="/login">Login</a>
     </div></br></br>
     <h1>Future Title</h1>
-    <h2 id="fridge">Refrigerator:</h2>
-
-    <div id="add">add item</div>
-
-    <div id="input">
-      <form action="">
-        <input name="ingredient" type="text">
-        <input type="submit">
-      </form>
-    </div>
-    {%for item in fridge_items%}
-      <ul>
-        <li>{{item}}</li>
-      </ul>
-    {%endfor%}
-
-    <div style="clear:both;"></div>
     <div class="store_nav">
       <div id="disappear_ul">
         <div id="home">
@@ -51,6 +34,24 @@
         </div>
       </div>
     </div>
+    <div style="clear:both;"></div>
+    <h2 id="fridge">Refrigerator:</h2>
+
+    <div id="add">add item</div>
+    <div style="clear:both;"></div>
+    <div id="input">
+      <form action="">
+        <input name="ingredient" type="text">
+        <input type="submit">
+      </form>
+    </div>
+    <div id="items">
+      {%for item in fridge_items%}
+        <ul>
+          <li>{{item}}</li>
+        </ul>
+      {%endfor%}
+    </div></br></br>
     <div style="clear:both;"></div>
   </body>
 </html>
