@@ -31,17 +31,22 @@ class MainHandler(webapp2.RequestHandler):
     def get(self):
         food_list = self.request.get('ingredient').split(', ')
         user = users.get_current_user()
-        food_query = Fridge.query(Fridge.user_id == user.user_id())
-        user_fridge = food_query.get()
-        if user_fridge == None:
-            user_fridge = Fridge(user_id = user.user_id())
-        if len(food_list) != 0:
-            for item in food_list:
-                if item != '':
-                    user_fridge.foodList.append(item)
-            user_fridge.put()
-        render_dict = {}
-        render_dict['fridge_items'] = user_fridge.foodList
+        if user is None:
+            emptyList = ['Please sign in to save your food items to your fridge']
+            render_dict = {}
+            render_dict['fridge_items'] = emptyList
+        else:
+            food_query = Fridge.query(Fridge.user_id == user.user_id())
+            user_fridge = food_query.get()
+            if user_fridge == None:
+                user_fridge = Fridge(user_id = user.user_id())
+            if len(food_list) != 0:
+                for item in food_list:
+                    if item != '':
+                        user_fridge.foodList.append(item)
+                user_fridge.put()
+            render_dict = {}
+            render_dict['fridge_items'] = user_fridge.foodList
         my_template = jinja_environment.get_template('templates/main.html')
         self.response.write(my_template.render(render_dict))
 
