@@ -8,9 +8,14 @@ html {
   border: solid;
   border-color: #444444;
   display: inline-block;
-  width: 45%;
-  margin: 0 auto;
+  width: 47%;
+  margin-right: auto;
+  margin-left: auto;
+  margin-top: 15px;
+  padding: 10px;
   text-align: center;
+  font-size: 20px;
+  background-color: #FBB5A3;
 }
 h1 {
   text-align: center;
