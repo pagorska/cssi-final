@@ -67,34 +67,37 @@ class RestaurantHandler(webapp2.RequestHandler):
 class SearchHandler(webapp2.RequestHandler):
     def get(self):
         user = users.get_current_user()
-        food_query = Fridge.query(Fridge.user_id == user.user_id())
-        user_fridge = food_query.get()
-        ingredients = ",".join(user_fridge.foodList)
-        base_url = 'http://www.recipepuppy.com/api/?'
-        url_params = {'i' : ingredients}
-        request_url = base_url + urllib.urlencode(url_params)
-        try:
-            my_template = jinja_environment.get_template('templates/searchResults.html')
-            recipe_response = urllib2.urlopen(request_url)
-            recipe_json = recipe_response.read()
-            recipe_data = json.loads(recipe_json)
-            title_list = []
-            ingr_list = []
-            link_list = []
-            for i in recipe_data['results']:
-                title_list.append(i['title'])
-                ingr_list.append(i['ingredients'])
-                link_list.append(i['href'])
-            lenNum = len(title_list)
-            render_data = { 'title': title_list,
-                'ingredients' : ingr_list,
-                'link' : link_list,
-                'num' : lenNum
-            }
-            self.response.write(my_template.render(render_data))
-        except urllib2.HTTPError, err:
-            my_template = jinja_environment.get_template('templates/searchFailed.html')
-            self.response.write(my_template.render())
+        if user is None:
+            self.response.write("Please log in to continue")
+        else:
+            food_query = Fridge.query(Fridge.user_id == user.user_id())
+            user_fridge = food_query.get()
+            ingredients = ",".join(user_fridge.foodList)
+            base_url = 'http://www.recipepuppy.com/api/?'
+            url_params = {'i' : ingredients}
+            request_url = base_url + urllib.urlencode(url_params)
+            try:
+                my_template = jinja_environment.get_template('templates/searchResults.html')
+                recipe_response = urllib2.urlopen(request_url)
+                recipe_json = recipe_response.read()
+                recipe_data = json.loads(recipe_json)
+                title_list = []
+                ingr_list = []
+                link_list = []
+                for i in recipe_data['results']:
+                    title_list.append(i['title'])
+                    ingr_list.append(i['ingredients'])
+                    link_list.append(i['href'])
+                lenNum = len(title_list)
+                render_data = { 'title': title_list,
+                    'ingredients' : ingr_list,
+                    'link' : link_list,
+                    'num' : lenNum
+                }
+                self.response.write(my_template.render(render_data))
+            except urllib2.HTTPError, err:
+                my_template = jinja_environment.get_template('templates/searchFailed.html')
+                self.response.write(my_template.render())
 
 
 class LoginHandler(webapp2.RequestHandler):
