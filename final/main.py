@@ -30,7 +30,7 @@ jinja_environment = jinja2.Environment(
 # for main.html
 class MainHandler(webapp2.RequestHandler):
     def get(self):
-        food_list = self.request.get('ingredient').split(',')
+        food_list = self.request.get('ingredient').split(', ')
         user = users.get_current_user()
         food_query = Fridge.query(Fridge.user_id == user.user_id())
         user_fridge = food_query.get()
@@ -38,7 +38,8 @@ class MainHandler(webapp2.RequestHandler):
             user_fridge = Fridge(user_id = user.user_id())
         if len(food_list) != 0:
             for item in food_list:
-                user_fridge.foodList.append(item)
+                if item != '':
+                    user_fridge.foodList.append(item)
             user_fridge.put()
         render_dict = {}
 
