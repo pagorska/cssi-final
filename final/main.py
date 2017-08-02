@@ -96,29 +96,6 @@ class LoginHandler(webapp2.RequestHandler):
             greeting = ('<a href="%s">Sign in or register</a>.' %
                 users.create_login_url('/'))
         self.response.write('<html><body>%s</body></html>' % greeting)
-
-<<<<<<< HEAD
-class FridgeHandler(webapp2.RequestHandler):
-    def get(self):
-        self.response.write('fridge works!')
-        food_list = self.request.get('ingredient').split(', ')
-        user = users.get_current_user()
-        food_query = Fridge.query(Fridge.user_id == user.user_id())
-        user_fridge = food_query.get()
-        if user_fridge == None:
-            user_fridge = Fridge(user_id = user.user_id())
-        if len(food_list) != 0:
-            for item in food_list:
-                if item != '':
-                    user_fridge.foodList.append(item)
-            user_fridge.put()
-        render_dict = {}
-
-        render_dict['fridge_items'] = user_fridge.foodList
-        my_template = jinja_environment.get_template('templates/main.html')
-        self.response.write(my_template.render(render_dict))
-=======
->>>>>>> 950c0c8241a409b971d6c64aa0301d8b630923d0
 app = webapp2.WSGIApplication([
     ('/', MainHandler),
     ('/search', SearchHandler),
