@@ -8,17 +8,6 @@
 </head>
 <body>
   <h1>Our Future Title</h1>
-
-  <div id="searchResults">
-    <div>
-      {% for i in range(num) %}
-      <div class="iSearches">
-        <h3>{{title[i]}}</h3>
-        <a href="{{link[i]}}">Link to Recipe</a>
-      </div>
-        {% endfor %}
-    </div>
-  </div>
   <div class="store_nav">
     <div id="disappear_ul">
       <div id="home">
@@ -38,7 +27,18 @@
       </div>
     </div>
   </div>
-  <div style="clear:both;"></div>
+  <div style="clear:both;"></div></br></br>
+
+  <div id="searchResults">
+    <div>
+      {% for i in range(num) %}
+      <div class="iSearches">
+        <h3>{{title[i]}}</h3>
+        <a href="{{link[i]}}">Link to Recipe</a>
+      </div>
+        {% endfor %}
+    </div>
+  </div>
 
 </body>
 </html>
