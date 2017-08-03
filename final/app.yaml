@@ -1,12 +1,8 @@
 <<<<<<< HEAD
-application: idkk-972
-=======
-<<<<<<< HEAD
 application: myfridge-175714
 =======
-application: my-fridge-175714
->>>>>>> b4563b949248dd12991cf2f06ea5ccbbfab251d8
->>>>>>> 70a16b9597fbc711b5cc501e10f21c2c2193ae0b
+application: idkk-972
+>>>>>>> 305a4691bcd2841e55b0c83c89433232241db67d
 version: 1
 runtime: python27
 api_version: 1

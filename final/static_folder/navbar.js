@@ -1,8 +1,12 @@
-function disappear() {
+function disappearAdd() {
   $("#input").toggleClass("hidden");
+}
+function disappearItem() {
+  $("#item_info").toggleClass("hidden");
 }
 
 $(document).ready(function() {
-  $("#add").click(disappear);
+  $("#add").click(disappearAdd);
+  $("#items").click(disappearItem);
   }
 )

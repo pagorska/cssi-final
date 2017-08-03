@@ -53,6 +53,9 @@
   background-color: gray;
   color: black;
 }
+#item_info:hover {
+  color: red;
+}
 .store_nav a {
   text-decoration: none;
   color: #fba67d;

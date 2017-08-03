@@ -60,14 +60,14 @@ class AboutHandler(webapp2.RequestHandler):
         user = users.get_current_user()
         if user is None:
             render_dict = {
-                'logon' : 'Log In'
+                'logon' : 'Login'
             }
         else:
            render_dict = {
-                 'logon' : 'Log Out'
+                 'logon' : 'Logout'
             }
         my_template = jinja_environment.get_template('templates/aboutUs.html')
-        self.response.write(my_template.render())
+        self.response.write(my_template.render(render_dict))
 
 
 #for restaurants.html
@@ -76,11 +76,11 @@ class RestaurantHandler(webapp2.RequestHandler):
         user = users.get_current_user()
         if user is None:
             render_dict = {
-                'logon' : 'Log In'
+                'logon' : 'Login'
             }
         else:
            render_dict = {
-                 'logon' : 'Log Out'
+                 'logon' : 'Logout'
             }
         my_template = jinja_environment.get_template('templates/restaurants.html')
         self.response.write(my_template.render(render_dict))
@@ -90,10 +90,12 @@ class SearchHandler(webapp2.RequestHandler):
     def get(self):
         user = users.get_current_user()
         if user is None:
-            self.response.write("Please log in to continue")
+            my_template = jinja_environment.get_template('templates/searchFailed.html')
             render_dict = {
-
+                'loginOrFail' : "Please log in to continue",
+                'logon' : 'Login'
             }
+            self.response.write(my_template.render(render_dict))
         else:
             food_query = Fridge.query(Fridge.user_id == user.user_id())
             user_fridge = food_query.get()
@@ -118,12 +120,16 @@ class SearchHandler(webapp2.RequestHandler):
                     'ingredients' : ingr_list,
                     'link' : link_list,
                     'num' : lenNum,
-                    'logon' : 'Log In'
+                    'logon' : 'Logout'
                 }
                 self.response.write(my_template.render(render_data))
             except urllib2.HTTPError, err:
                 my_template = jinja_environment.get_template('templates/searchFailed.html')
-                self.response.write(my_template.render())
+                render_dict = {
+                    'loginOrFail' : 'Unable to fetch results',
+                    'logon' : 'Logout'
+                }
+                self.response.write(my_template.render(render_dict))
 
 
 class LoginHandler(webapp2.RequestHandler):
