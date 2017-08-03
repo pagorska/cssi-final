@@ -44,7 +44,9 @@ class MainHandler(webapp2.RequestHandler):
             removeItem = ''
             removeItem = self.request.get('remove')
             if removeItem != '':
-                user_fridge.foodList.remove(removeItem)
+                for item in user_fridge.foodList:
+                    if item == removeItem:
+                        user_fridge.foodList.remove(removeItem)
             if user_fridge == None:
                 user_fridge = Fridge(user_id = user.user_id())
             if len(food_list) != 0:
