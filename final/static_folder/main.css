@@ -19,3 +19,15 @@ a {
 #failed {
   text-align: center;
 }
+#fridge, #add, #input, #items, #food_list {
+  text-align: center;
+}
+#fridge, #add {
+  display: inline-block;
+}
+ul {
+  list-style: none;
+}
+#fridgeC {
+  text-align: center;
+}
