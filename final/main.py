@@ -46,7 +46,12 @@ class MainHandler(webapp2.RequestHandler):
             if len(food_list) != 0:
                 for item in food_list:
                     if item != '':
-                        user_fridge.foodList.append(item)
+                        count=0
+                        for itemF in user_fridge.foodList:
+                            if item == itemF:
+                                count +=1
+                        if count == 0:
+                            user_fridge.foodList.append(item)
                 user_fridge.put()
             render_dict = {
                 'fridge_items' : user_fridge.foodList,
