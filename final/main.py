@@ -57,6 +57,15 @@ class MainHandler(webapp2.RequestHandler):
 #for aboutUs.html
 class AboutHandler(webapp2.RequestHandler):
     def get(self):
+        user = users.get_current_user()
+        if user is None:
+            render_dict = {
+                'logon' : 'Log In'
+            }
+        else:
+           render_dict = {
+                 'logon' : 'Log Out'
+            }
         my_template = jinja_environment.get_template('templates/aboutUs.html')
         self.response.write(my_template.render())
 
@@ -64,6 +73,15 @@ class AboutHandler(webapp2.RequestHandler):
 #for restaurants.html
 class RestaurantHandler(webapp2.RequestHandler):
     def get(self):
+        user = users.get_current_user()
+        if user is None:
+            render_dict = {
+                'logon' : 'Log In'
+            }
+        else:
+           render_dict = {
+                 'logon' : 'Log Out'
+            }
         my_template = jinja_environment.get_template('templates/restaurants.html')
         self.response.write(my_template.render())
 
@@ -73,6 +91,9 @@ class SearchHandler(webapp2.RequestHandler):
         user = users.get_current_user()
         if user is None:
             self.response.write("Please log in to continue")
+            render_dict = {
+
+            }
         else:
             food_query = Fridge.query(Fridge.user_id == user.user_id())
             user_fridge = food_query.get()
@@ -96,7 +117,8 @@ class SearchHandler(webapp2.RequestHandler):
                 render_data = { 'title': title_list,
                     'ingredients' : ingr_list,
                     'link' : link_list,
-                    'num' : lenNum
+                    'num' : lenNum,
+                    'logon' : 'Log In'
                 }
                 self.response.write(my_template.render(render_data))
             except urllib2.HTTPError, err:
