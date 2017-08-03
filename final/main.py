@@ -30,6 +30,7 @@ jinja_environment = jinja2.Environment(
 class MainHandler(webapp2.RequestHandler):
     def get(self):
         food_list = self.request.get('ingredient').split(', ')
+        remove_item = self.request.get("remove")
         user = users.get_current_user()
         if user is None:
             emptyList = ['Please sign in to save your food items to your fridge']
@@ -40,6 +41,10 @@ class MainHandler(webapp2.RequestHandler):
         else:
             food_query = Fridge.query(Fridge.user_id == user.user_id())
             user_fridge = food_query.get()
+            removeItem = ''
+            removeItem = self.request.get('remove')
+            if removeItem != '':
+                user_fridge.foodList.remove(removeItem)
             if user_fridge == None:
                 user_fridge = Fridge(user_id = user.user_id())
             if len(food_list) != 0:
@@ -56,6 +61,8 @@ class MainHandler(webapp2.RequestHandler):
                 'fridge_items' : user_fridge.foodList,
                 'logon' : 'Logout'
             }
+
+
         my_template = jinja_environment.get_template('templates/main.html')
         self.response.write(my_template.render(render_dict))
 
