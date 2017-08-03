@@ -3,8 +3,9 @@ function disappearAdd() {
 }
 function disappearItem(e) {
   $(e.target).toggleClass("hidden");
-  id = target.id()
-  .redirect("/?remove=" + id)
+  id = e.target.innerHTML
+  console.log(id)
+  $(location).attr("href", "/?remove=" + id)
 }
 $(document).ready(function() {
   $("#add").click(disappearAdd);
