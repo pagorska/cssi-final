@@ -2,11 +2,7 @@
  * element that contains the map. */
 #map {
   height: 80%;
-<<<<<<< HEAD
-  width:
-=======
   width: 85%;
->>>>>>> 305a4691bcd2841e55b0c83c89433232241db67d
 }
 /* Optional: Makes the sample page fill the window. */
 html, body {
