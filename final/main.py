@@ -83,7 +83,7 @@ class RestaurantHandler(webapp2.RequestHandler):
                  'logon' : 'Log Out'
             }
         my_template = jinja_environment.get_template('templates/restaurants.html')
-        self.response.write(my_template.render())
+        self.response.write(my_template.render(render_dict))
 
 #for searchResults.html
 class SearchHandler(webapp2.RequestHandler):
