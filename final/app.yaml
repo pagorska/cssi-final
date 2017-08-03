@@ -1,8 +1,4 @@
-<<<<<<< HEAD
 application: myfridge-175714
-=======
-application: my-fridge-175714
->>>>>>> b4563b949248dd12991cf2f06ea5ccbbfab251d8
 version: 1
 runtime: python27
 api_version: 1
