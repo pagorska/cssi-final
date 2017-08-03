@@ -15,7 +15,7 @@ function initMap() {
       };
 
       infoWindow.setPosition(pos);
-      infoWindow.setContent("You");
+      infoWindow.setContent("You're here!");
       infoWindow.open(map);
       map.setCenter(pos);
       var service = new google.maps.places.PlacesService(map);
