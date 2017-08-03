@@ -60,11 +60,11 @@ class AboutHandler(webapp2.RequestHandler):
         user = users.get_current_user()
         if user is None:
             render_dict = {
-                'logon' : 'Log In'
+                'logon' : 'Login'
             }
         else:
            render_dict = {
-                 'logon' : 'Log Out'
+                 'logon' : 'Logout'
             }
         my_template = jinja_environment.get_template('templates/aboutUs.html')
         self.response.write(my_template.render(render_dict))
@@ -76,11 +76,11 @@ class RestaurantHandler(webapp2.RequestHandler):
         user = users.get_current_user()
         if user is None:
             render_dict = {
-                'logon' : 'Log In'
+                'logon' : 'Login'
             }
         else:
            render_dict = {
-                 'logon' : 'Log Out'
+                 'logon' : 'Logout'
             }
         my_template = jinja_environment.get_template('templates/restaurants.html')
         self.response.write(my_template.render(render_dict))
