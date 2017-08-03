@@ -53,7 +53,7 @@
   background-color: gray;
   color: black;
 }
-#item_info:hover {
+.item_info:hover {
   color: red;
 }
 .store_nav a {
