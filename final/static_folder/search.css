@@ -20,5 +20,10 @@ h1 {
   text-align: center;
 }
 a {
-  color: black;
+  color: #444444;
+  text-decoration: underline;
+}
+#login a {
+  color: #fba67d;
+  text-decoration: none;
 }

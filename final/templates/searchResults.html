@@ -2,8 +2,8 @@
   <head>
     <link href="https://fonts.googleapis.com/css?family=Quicksand" rel="stylesheet">
     <link rel="stylesheet" href="resources/navbar.css">
-    <link rel="stylesheet" href="resources/search.css">
     <link rel="stylesheet" href="resources/main.css">
+    <link rel="stylesheet" href="resources/search.css">
     <title>MyFridge</title>
   </head>
   <body>
@@ -33,11 +33,11 @@
         {% for i in range(num) %}
         <div class="iSearches">
           <h3>{{title[i]}}</h3>
-          <a href="{{link[i]}}">Link to Recipe</a>
+          <a class="searchLinks"href="{{link[i]}}">Link to Recipe</a>
         </div>
           {% endfor %}
       </div>
     </div>
-    <!-- Go to www.addthis.com/dashboard to customize your tools --> <script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-59838ceff1fd6d93"></script> 
+    <!-- Go to www.addthis.com/dashboard to customize your tools --> <script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-59838ceff1fd6d93"></script>
   </body>
 </html>
